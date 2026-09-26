@@ -1,4 +1,4 @@
-echo '# ESP32-S3 Zero + Tailscale (MicroLink) + Mongoose Dashboard & DHT11
+ESP32-S3 Zero + Tailscale (MicroLink) + Mongoose Dashboard & DHT11
 
 Projeto IoT embarcado utilizando o microcontrolador **ESP32-S3-Zero**, conectado diretamente a uma rede VPN privada via protocolo **Tailscale** (**MicroLink v3.2.0**) e hospedando um **Device Dashboard em tempo real (WebSockets)** com **Cesanta Mongoose** para monitoramento de Temperatura/Umidade (**DHT11**), telemetria de hardware e acionamento de atuadores (LED) de qualquer lugar do mundo.
 
@@ -53,6 +53,18 @@ Para o correto funcionamento do WireGuard, Mongoose e do console no ESP32-S3 Zer
 
 Placas compactas com reguladores de tensão LDO pequenos podem sofrer quedas de tensão (*brownout*) durante picos de transmissão WiFi. Foi implementada a redução da potência máxima de TX para **8.5 dBm**:
 
-```c
 // ESP-IDF: Incrementos de 0.25 dBm (8.5 * 4 = 34)
 esp_wifi_set_max_tx_power(34);
+
+---
+
+## 🔐 Segurança e Credenciais (`secrets.h`)
+
+Para evitar o vazamento de dados sensíveis (senha do WiFi e chave de autenticação da VPN) em repositórios públicos no GitHub, as credenciais **não ficam no código-fonte principal**.
+
+1. **Arquivo Ignorado pelo Git:** O arquivo real de senhas (`main/secrets.h`) está listado no `.gitignore` e existe apenas localmente na máquina de desenvolvimento.
+2. **Arquivo de Modelo:** O repositório conta com o arquivo `main/secrets.example.h`, que serve como molde para quem clonar o projeto.
+3. **Como configurar suas credenciais:**
+   Copie o arquivo de exemplo para criar o seu `secrets.h` local:
+   ```bash
+   cp main/secrets.example.h main/secrets.h
