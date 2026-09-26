@@ -1,0 +1,13 @@
+# Pastas de compilação e componentes baixados
+build/
+managed_components/
+dependencies.lock
+
+# Arquivos de backup do menuconfig
+sdkconfig.old
+
+# Arquivos de editores de texto/IDE
+.vscode/
+.idea/
+*.swp
+main/secrets.h
