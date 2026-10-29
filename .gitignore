@@ -11,3 +11,6 @@ sdkconfig.old
 .idea/
 *.swp
 main/secrets.h
+
+# sdkconfig pode conter credenciais do menuconfig
+sdkconfig
